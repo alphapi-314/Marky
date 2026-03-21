@@ -13,7 +13,6 @@ export class Node {
     info = null;
     level = null;
     isOpen = true;
-    // Additional generic fields that Python allows dynamically
     customId;
     label;
     checked;
