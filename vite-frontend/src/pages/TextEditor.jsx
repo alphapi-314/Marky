@@ -3,12 +3,18 @@ import Navbar from '../components/Navbar'
 
 const TextEditor = () => {
   return (
-    <div>
+    <div className='bg-yellow-100 flex flex-col min-h-screen pt-[84px]'>
         <Navbar/>
-        <div className='bg-yellow-100 flex justify-center min-h-screen w-full gap-3 py-25'>
-            <textarea className='rounded-xs border-1 ml-5 w-1/2 h-[500px] bg-gray-50 p-4 outline'></textarea>
+        <div className="pt-15 flex justify-center w-full gap-5 px-10">
+          <div className="w-1/2 flex flex-col items-center gap-6">
+            <button className="bg-amber-950 font-inter text-yellow-100 h-11 px-5 w-fit rounded-2xl">PREVIEW</button>
+            <textarea className="rounded-lg outline-3 w-full outline-amber-950 h-[700px] text-amber-950 font-nunito bg-gray-100 p-7 overflow-auto"></textarea>
+          </div>
 
-            <textarea className='rounded-xs border-1 border-amber-900 mr-5 w-1/2 h-[500px] bg-gray-50 p-4 outline'></textarea>
+          <div className="w-1/2 flex flex-col items-center gap-6">
+            <button className="bg-amber-950 font-inter text-yellow-100 h-11 px-5 w-fit rounded-2xl">SUBMIT</button>
+            <div className="rounded-lg outline-3 w-full outline-amber-950 h-[700px] text-amber-950 font-nunito bg-gray-100 p-7 overflow-auto"></div>
+          </div>
         </div>
     </div>
   )
