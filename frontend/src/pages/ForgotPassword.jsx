@@ -16,21 +16,21 @@ const ForgotPassword = () => {
 
     console.log("Send OTP to:", email);
 
-    // later → backend will send OTP
+    
     alert("OTP sent to your email");
 
-    // ✅ FIXED FLOW
+   
     navigate("/verify-otp");
   };
 
   return (
     <div className="relative min-h-screen w-full">
 
-      {/* Background */}
+      {}
       <div className="absolute inset-0 bg-yellow-100"></div>
       <div className="absolute inset-0 backdrop-blur-xl bg-white/30"></div>
 
-      {/* Content */}
+      {}
       <div className="relative z-10 flex flex-col min-h-screen">
         
         <Navbar />
