@@ -28,56 +28,35 @@ const Login = () => {
   };
 
   return (
-    <div className="relative min-h-screen w-full">
-
-      {}
-      <div className="absolute inset-0 bg-yellow-100"></div>
-      <div className="absolute inset-0 backdrop-blur-xl bg-white/30"></div>
-
-      {}
-      <div className="relative z-10 flex flex-col min-h-screen">
-        
-        <Navbar />
-
-        <div className="flex items-center justify-center flex-grow">
+    <div className="relative min-h-screen w-full bg-yellow-100 flex flex-col items-center justify-center"> 
+        <div className="w-full relative z-20">
+          <Navbar />
+        </div>
+        <div className="absolute inset-0 top-[84px] backdrop-blur-md bg-black/10 z-10"></div>
+        <div className="relative z-20 flex items-center p-20 justify-center">
           
-          <form
-            onSubmit={handleSubmit}
-            className="bg-yellow-50 p-10 rounded-2xl shadow-2xl flex flex-col w-96 border border-yellow-200"
-          >
-            <h2 className="text-3xl font-bold text-center text-orange-900 mb-6">
-              Login
-            </h2>
+          <form onSubmit={handleSubmit} className="bg-yellow-50 py-12 font-inter text-center rounded-3xl flex flex-col items-center justify-center w-160 border-3 border-amber-950">
 
-            {}
-            <input
-              type="text"
-              placeholder="Enter Email or Username"
-              value={loginInput}
+            <h2 className="text-4xl font-medium  text-amber-950 mb-6"> Login </h2>
+
+            <input type="text" placeholder="Enter Email or Username" value={loginInput}
               onChange={(e) => setLoginInput(e.target.value)}
-              className="mb-4 p-3 rounded-lg border outline-none focus:ring-2 focus:ring-orange-400"
+              className="mb-5 p-3 text-amber-950 rounded-lg w-80 outline-1 focus:ring-3 focus:ring-amber-700"
               required
             />
 
-            {}
             <input
               type="password"
               placeholder="Enter Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mb-4 p-3 rounded-lg border outline-none focus:ring-2 focus:ring-orange-400"
+              className="mb-5 p-3 text-amber-950 rounded-lg w-80 outline-1 focus:ring-3 focus:ring-amber-700"
               required
             />
 
-            {}
-            <button
-              type="submit"
-              className="bg-orange-900 text-white p-3 rounded-lg hover:bg-orange-800 transition"
-            >
-              Login
+            <button type="submit" className="bg-amber-950 text-yellow-50 p-3 px-7 rounded-3xl hover:bg-amber-900 transition"> Login
             </button>
 
-            {}
             <p className="text-sm text-center mt-4">
               Don't have an account?{" "}
               <span
@@ -87,12 +66,9 @@ const Login = () => {
                 Sign Up
               </span>
             </p>
-
           </form>
-
         </div>
       </div>
-    </div>
   );
 };
 
