@@ -30,11 +30,11 @@ const Login = () => {
   return (
     <div className="relative min-h-screen w-full">
 
-      {/* Background */}
+      {}
       <div className="absolute inset-0 bg-yellow-100"></div>
       <div className="absolute inset-0 backdrop-blur-xl bg-white/30"></div>
 
-      {/* Content */}
+      {}
       <div className="relative z-10 flex flex-col min-h-screen">
         
         <Navbar />
@@ -49,7 +49,7 @@ const Login = () => {
               Login
             </h2>
 
-            {/* Email OR Username */}
+            {}
             <input
               type="text"
               placeholder="Enter Email or Username"
@@ -59,7 +59,7 @@ const Login = () => {
               required
             />
 
-            {/* Password */}
+            {}
             <input
               type="password"
               placeholder="Enter Password"
@@ -69,7 +69,7 @@ const Login = () => {
               required
             />
 
-            {/* Login Button */}
+            {}
             <button
               type="submit"
               className="bg-orange-900 text-white p-3 rounded-lg hover:bg-orange-800 transition"
@@ -77,7 +77,7 @@ const Login = () => {
               Login
             </button>
 
-            {/* 🔥 Signup Link (NEW) */}
+            {}
             <p className="text-sm text-center mt-4">
               Don't have an account?{" "}
               <span
