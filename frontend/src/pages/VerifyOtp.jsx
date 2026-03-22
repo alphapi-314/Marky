@@ -8,7 +8,7 @@ const VerifyOtp = () => {
   const [otp, setOtp] = useState("");
   const [timer, setTimer] = useState(60);
 
-  // ⏱️ Timer
+  
   useEffect(() => {
     if (timer === 0) return;
 
@@ -19,7 +19,7 @@ const VerifyOtp = () => {
     return () => clearInterval(interval);
   }, [timer]);
 
-  // 🔄 Resend OTP
+  
   const handleResend = () => {
     if (timer > 0) return;
 
@@ -46,11 +46,11 @@ const VerifyOtp = () => {
   return (
     <div className="relative min-h-screen w-full">
 
-      {/* Background */}
+      {}
       <div className="absolute inset-0 bg-yellow-100"></div>
       <div className="absolute inset-0 backdrop-blur-xl bg-white/30"></div>
 
-      {/* Content */}
+      {}
       <div className="relative z-10 flex flex-col min-h-screen">
         
         <Navbar />
@@ -65,7 +65,7 @@ const VerifyOtp = () => {
               Verify OTP
             </h2>
 
-            {/* OTP Input */}
+            {}
             <input
               type="text"
               placeholder="Enter OTP"
@@ -75,17 +75,17 @@ const VerifyOtp = () => {
               required
             />
 
-            {/* 🔥 Timer + Resend */}
+            {}
             <div className="flex items-center justify-center gap-2 mb-3">
               
-              {/* Timer (hide when 0) */}
+              {}
               {timer > 0 && (
                 <span className="text-gray-600 text-sm">
                   00:{timer < 10 ? `0${timer}` : timer}
                 </span>
               )}
 
-              {/* Resend OTP */}
+              {}
               <span
                 onClick={handleResend}
                 className={`text-base ${
@@ -99,7 +99,7 @@ const VerifyOtp = () => {
 
             </div>
 
-            {/* Verify Button */}
+            {}
             <button
               type="submit"
               className="bg-orange-900 text-white p-3 rounded-lg hover:bg-orange-800 transition"
