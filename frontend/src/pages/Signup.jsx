@@ -5,20 +5,20 @@ import Navbar from "../components/Navbar";
 const Signup = () => {
   const navigate = useNavigate();
 
-  const [name, setName] = useState("");   // ✅ changed
+  const [name, setName] = useState("");   
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // ✅ Validation
+    
     if (!name || !email || !password) {
       alert("Please fill all fields");
       return;
     }
 
-    console.log("Name:", name);   // ✅ changed
+    console.log("Name:", name);   
     console.log("Email:", email);
     console.log("Password:", password);
 
@@ -29,13 +29,13 @@ const Signup = () => {
   return (
     <div className="relative min-h-screen w-full">
 
-      {/* Background */}
+      {}
       <div className="absolute inset-0 bg-yellow-100"></div>
 
-      {/* Blur */}
+      {}
       <div className="absolute inset-0 backdrop-blur-xl bg-white/30"></div>
 
-      {/* Content */}
+      {}
       <div className="relative z-10 flex flex-col min-h-screen">
         
         <Navbar />
@@ -50,7 +50,7 @@ const Signup = () => {
               Sign Up
             </h2>
 
-            {/* ✅ Name */}
+            {}
             <input
               type="text"
               placeholder="Enter Name"
@@ -60,7 +60,7 @@ const Signup = () => {
               required
             />
 
-            {/* Email */}
+            {}
             <input
               type="email"
               placeholder="Enter Email"
@@ -70,7 +70,7 @@ const Signup = () => {
               required
             />
 
-            {/* Password */}
+            {}
             <input
               type="password"
               placeholder="Enter Password"
@@ -87,7 +87,7 @@ const Signup = () => {
               Sign Up
             </button>
 
-            {/* Link to Login */}
+            {}
             <p className="text-sm text-center mt-4">
               Already have an account?{" "}
               <span
