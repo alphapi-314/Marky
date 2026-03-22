@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 const ResetPassword = () => {
   const navigate = useNavigate();
 
-  const [newPassword, setNewPassword] = useState(""); // ✅ only password
+  const [newPassword, setNewPassword] = useState(""); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,20 +17,20 @@ const ResetPassword = () => {
 
     console.log("New Password:", newPassword);
 
-    // later → send to backend
+    
     alert("Password reset successful!");
 
-    navigate("/"); // back to login
+    navigate("/"); 
   };
 
   return (
     <div className="relative min-h-screen w-full">
 
-      {/* Background */}
+      {}
       <div className="absolute inset-0 bg-yellow-100"></div>
       <div className="absolute inset-0 backdrop-blur-xl bg-white/30"></div>
 
-      {/* Content */}
+      {}
       <div className="relative z-10 flex flex-col min-h-screen">
         
         <Navbar />
@@ -45,7 +45,7 @@ const ResetPassword = () => {
               Reset Password
             </h2>
 
-            {/* ✅ ONLY password */}
+            {}
             <input
               type="password"
               placeholder="Enter New Password"
