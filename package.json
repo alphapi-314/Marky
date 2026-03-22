@@ -1,0 +1,25 @@
+{
+  "name": "marky",
+  "version": "1.0.0",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "description": "Content Management System",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alphapi-314/Marky.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/alphapi-314/Marky/issues"
+  },
+  "homepage": "https://github.com/alphapi-314/Marky#readme"
+}
