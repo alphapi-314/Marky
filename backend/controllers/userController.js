@@ -1,7 +1,13 @@
 import User from "../models/userModel.js";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import pageModel from "../models/pageModel.js";
 
 export class UserController {
+
+    createToken = (id) => {
+        return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "30d" });
+    };
 
     signup = async (req, res) => {
         try {
@@ -17,11 +23,14 @@ export class UserController {
                 password: hashedPassword,
             });
             await newUser.save();
+            const token = this.createToken(newUser._id);
             res.status(201).json({
+                success: true,
                 message: "User created successfully",
+                token,
                 user: {
                     _id: newUser._id,
-                    fullname: newUser.fullname,
+                    username: newUser.username,
                     email: newUser.email,
                 },
             });
@@ -49,8 +58,11 @@ export class UserController {
             if (!isMatch) {
                 return res.status(400).json({ message: "Invalid password" });
             }
+            const token = this.createToken(user._id);
             res.status(200).json({
+                success: true,
                 message: "Login successful",
+                token,
                 user: {
                     _id: user._id,
                     username: user.username,
@@ -65,14 +77,15 @@ export class UserController {
 
     updateAuthorName = async (req, res) => {
         try {
-            const { username, authorName } = req.body;
-            const user = await User.findOne({ username });
+            const { userId, authorName } = req.body;
+            const user = await User.findById(userId);
             if (!user) {
-                return res.status(404).json({ message: "User not found" });
+                return res.status(404).json({ success: false, message: "User not found" });
             }
             if (authorName) user.authorName = authorName;
             await user.save();
             res.status(200).json({
+                success: true,
                 message: "User details updated successfully",
                 user: {
                     _id: user._id,
@@ -88,17 +101,18 @@ export class UserController {
 
     savePage = async (req, res) => {
         try {
-            const { username, page_id } = req.body;
-            const user = await User.findOne({ username });
+            const { userId, page_id } = req.body;
+            const user = await User.findById(userId);
             if (!user) {
-                return res.status(404).json({ message: "User not found" });
+                return res.status(404).json({ success: false, message: "User not found" });
             }
             if (user.savedPages.includes(page_id)) {
-                return res.status(400).json({ message: "Page already saved" });
+                return res.status(400).json({ success: false, message: "Page already saved" });
             }
             user.savedPages.push(page_id);
             await user.save();
             res.status(200).json({
+                success: true,
                 message: "Page saved successfully",
                 user: {
                     _id: user._id,
@@ -114,17 +128,18 @@ export class UserController {
 
     unsavePage = async (req, res) => {
         try {
-            const { username, page_id } = req.body;
-            const user = await User.findOne({ username });
+            const { userId, page_id } = req.body;
+            const user = await User.findById(userId);
             if (!user) {
-                return res.status(404).json({ message: "User not found" });
+                return res.status(404).json({ success: false, message: "User not found" });
             }
             if (!user.savedPages.includes(page_id)) {
-                return res.status(400).json({ message: "Page not saved" });
+                return res.status(400).json({ success: false, message: "Page not saved" });
             }
             user.savedPages = user.savedPages.filter((id) => id !== page_id);
             await user.save();
             res.status(200).json({
+                success: true,
                 message: "Page unsaved successfully",
                 user: {
                     _id: user._id,
@@ -140,22 +155,43 @@ export class UserController {
 
     getSavedPages = async (req, res) => {
         try {
-            const { username } = req.body;
-            const user = await User.findOne({ username });
+            const { userId } = req.body;
+            const user = await User.findById(userId);
             if (!user) {
-                return res.status(404).json({ message: "User not found" });
+                return res.status(404).json({ success: false, message: "User not found" });
             }
+
+            const pages = await pageModel.find({ page_id: { $in: user.savedPages } });
+
             res.status(200).json({
+                success: true,
                 message: "Saved pages fetched successfully",
-                user: {
-                    _id: user._id,
-                    username: user.username,
-                    savedPages: user.savedPages,
-                },
+                pages
             });
         } catch (error) {
             console.log("Error: " + error.message);
             res.status(500).json({ message: "Internal server error" });
         }
-    }
+    };
+
+    getOwnedPages = async (req, res) => {
+        try {
+            const { userId } = req.body;
+            const user = await User.findById(userId);
+            if (!user) {
+                return res.status(404).json({ success: false, message: "User not found" });
+            }
+
+            const pages = await pageModel.find({ page_id: { $in: user.ownedPages } });
+
+            res.status(200).json({
+                success: true,
+                message: "Owned pages fetched successfully",
+                pages
+            });
+        } catch (error) {
+            console.log("Error: " + error.message);
+            res.status(500).json({ message: "Internal server error" });
+        }
+    };
 };

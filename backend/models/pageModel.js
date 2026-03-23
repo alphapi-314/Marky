@@ -33,7 +33,7 @@ const pageSchema = new mongoose.Schema(
             default: []
         },
         embeddings: {
-            type: Array,
+            type: [Number],
             default: [],
             select: false
         }

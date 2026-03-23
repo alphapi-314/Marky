@@ -26,11 +26,11 @@ const userSchema = new mongoose.Schema(
             trim: true
         },
         ownedPages: {
-            type: Array,
+            type: [Number],
             default: []
         },
         savedPages: {
-            type: Array,
+            type: [Number],
             default: []
         }
     },
