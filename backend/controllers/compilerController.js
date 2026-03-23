@@ -8,12 +8,23 @@ export class CompilerController {
 
     preview = async (req, res) => {
         try {
-            const { text } = req.body;
-            if (!text) {
+            const { text, file, title } = req.body;
+            let content;
+            if (file) {
+                content = fs.readFileSync(file, 'utf-8');
+            }
+            else if (text) {
+                content = text;
+            }
+            else {
                 return res.status(400).json({ success: false, message: "No text provided" });
             }
+            if (title) {
+                content = title + "\n" + content;
+            }
+            console.log(content);
             const parser = new Parser();
-            const ast = parser.parse(text).toJSON();
+            const ast = parser.parse(content).toJSON();
             return res.status(200).json({ success: true, ast });
         } catch (error) {
             console.error("Preview error:", error);
@@ -23,7 +34,7 @@ export class CompilerController {
 
     submit = async (req, res) => {
         try {
-            const { userId, text, title, username, authorName } = req.body;
+            const { userId, text, title } = req.body;
             if (!text || !title) {
                 return res.status(400).json({ success: false, message: "Title and Content are required" });
             }
