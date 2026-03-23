@@ -8,7 +8,10 @@
   "description": "Content Management System",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "backend": "npm run dev -w backend",
+    "frontend": "npm run dev -w frontend",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\""
   },
   "repository": {
     "type": "git",
@@ -21,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/alphapi-314/Marky/issues"
   },
-  "homepage": "https://github.com/alphapi-314/Marky#readme"
+  "homepage": "https://github.com/alphapi-314/Marky#readme",
+  "dependencies": {
+    "concurrently": "^9.2.1"
+  }
 }

@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api/users', userRouter);
+app.use('/api/user', userRouter);
 app.use('/api/compiler', compilerRouter);
 app.use('/api/pages', pageRouter);
 

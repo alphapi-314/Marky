@@ -1,6 +1,6 @@
-import { Node } from "./node";
-import { blockTokenPattern, reHeadingID, reLineEndingSplit, reHtmlBlockOpen } from "./regex_rules";
-import { InlineParser } from "./inline_parser";
+import { Node } from "./node.js";
+import { blockTokenPattern, reHeadingID, reLineEndingSplit, reHtmlBlockOpen } from "./regex_rules.js";
+import { InlineParser } from "./inline_parser.js";
 
 export class Parser {
     inlineParser;

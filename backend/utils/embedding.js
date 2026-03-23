@@ -7,11 +7,11 @@ export async function getEmbedder() {
 
     try {
         const textFiles = await FilesetResolver.forTextTasks(
-            "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-text@latest/wasm/"
+            process.env.WASM_PATH
         );
         textEmbedderInstance = await TextEmbedder.createFromOptions(textFiles, {
             baseOptions: {
-                modelAssetPath: "https://storage.googleapis.com/mediapipe-models/text_embedder/universal_sentence_encoder/float32/1/universal_sentence_encoder.tflite"
+                modelAssetPath: process.env.MODEL_PATH
             }
         });
         return textEmbedderInstance;

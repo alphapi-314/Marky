@@ -1,5 +1,5 @@
-import { Node } from "./node";
-import { inlineTokenPattern } from "./regex_rules";
+import { Node } from "./node.js";
+import { inlineTokenPattern } from "./regex_rules.js";
 
 export function unescapeHtml(text) {
     return text.replace(/&lt;/g, '<')

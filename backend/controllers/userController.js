@@ -35,8 +35,8 @@ export class UserController {
                 },
             });
         } catch (error) {
-            console.log("Error: " + error.message);
-            res.status(500).json({ message: "Internal server error" });
+            console.error("Signup Error:", error);
+            res.status(500).json({ message: "Internal server error", error: error.message });
         }
     };
 
@@ -45,10 +45,10 @@ export class UserController {
             const { username, email, password } = req.body;
             let user;
             if (email) {
-                user = await User.findOne({ email });
+                user = await User.findOne({ email }).select("+password");
             }
             else {
-                user = await User.findOne({ username });
+                user = await User.findOne({ username }).select("+password");
             }
 
             if (!user) {
@@ -70,8 +70,8 @@ export class UserController {
             });
         }
         catch (error) {
-            console.log("Error: " + error.message);
-            res.status(500).json({ message: "Internal server error" });
+            console.error("Login Error:", error);
+            res.status(500).json({ message: "Internal server error", error: error.message });
         }
     };
 
