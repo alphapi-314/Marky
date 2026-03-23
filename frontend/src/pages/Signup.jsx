@@ -28,8 +28,6 @@ const Signup = () => {
 
   return (
     <div className="relative min-h-screen w-full">
-
-      {}
       <div className="absolute inset-0 bg-yellow-100"></div>
       <div className="relative z-10 flex flex-col min-h-screen">
         
@@ -43,8 +41,6 @@ const Signup = () => {
             <h2 className="text-3xl font-medium text-center font-inter text-amber-950 mb-7">
               Sign Up
             </h2>
-
-            {}
             <input
               type="text"
               placeholder="Enter Name"
@@ -54,7 +50,6 @@ const Signup = () => {
               required
             />
 
-            {}
             <input
               type="email"
               placeholder="Enter Email"
@@ -64,7 +59,6 @@ const Signup = () => {
               required
             />
 
-            {}
             <input
               type="password"
               placeholder="Enter Password"
@@ -79,7 +73,7 @@ const Signup = () => {
               Sign Up
             </button>
 
-            {}
+
             <p className="text-sm text-center mt-4">
               Already have an account?{" "}
               <span

@@ -1,11 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-html, body {
-  width: 100%;
-  height: 100%;
-}
-
 @theme {
   --font-poppins: 'Poppins', ui-sans-serif, system-ui, sans-serif;
   --font-baskerville: 'Libre Baskerville', serif;
@@ -13,4 +8,9 @@ html, body {
   --font-nunito: 'Nunito', sans-serif;
   --font-inter: 'Inter', sans-serif;
   --font-jetbrains: 'JetBrains Mono', monospace;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
 }

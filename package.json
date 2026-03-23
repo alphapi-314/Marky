@@ -25,14 +25,10 @@
     "url": "https://github.com/alphapi-314/Marky/issues"
   },
   "homepage": "https://github.com/alphapi-314/Marky#readme",
-<<<<<<< Updated upstream
   "dependencies": {
     "concurrently": "^9.2.1"
-  }
-}
-=======
+  },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19"
   }
 }
->>>>>>> Stashed changes
