@@ -16,11 +16,11 @@ const Navbar = () => {
             <Link to='/'>Search</Link>
           </div>
           <div className='flex items-center justify-center'>
-            <div className='rounded-l-4xl bg-yellow-100 border-yellow-600  border-t-2 border-l-2 border-r-1 border-b-2 p-1 flex items-center px-3'>
+            <div className='rounded-l-4xl bg-yellow-100 border-yellow-600  border-t-2 border-l-2 border-r border-b-2 p-1 flex items-center px-3'>
               <Link className='text-amber-950 font-medium font-inter' to='/signup'>Signup</Link>
             </div>
             
-            <div className='rounded-r-4xl  bg-amber-950 border-yellow-600 border-t-2 border-r-2 border-l-1 border-b-2 p-1 flex items-center px-3'>
+            <div className='rounded-r-4xl  bg-amber-950 border-yellow-600 border-t-2 border-r-2 border-l border-b-2 p-1 flex items-center px-3'>
               <Link className=' text-yellow-100 font-medium font-inter' to='/login'>Login</Link>
             </div>
           </div>

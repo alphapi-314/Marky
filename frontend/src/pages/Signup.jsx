@@ -31,22 +31,16 @@ const Signup = () => {
 
       {}
       <div className="absolute inset-0 bg-yellow-100"></div>
-
-      {}
-      <div className="absolute inset-0 backdrop-blur-xl bg-white/30"></div>
-
-      {}
       <div className="relative z-10 flex flex-col min-h-screen">
         
         <Navbar />
 
         <div className="flex items-center justify-center flex-grow">
           
-          <form
-            onSubmit={handleSubmit}
-            className="bg-yellow-50 p-10 rounded-2xl shadow-2xl flex flex-col w-96 border border-yellow-200"
+          <form onSubmit={handleSubmit}
+            className="bg-yellow-50 py-11  font-inter text-center rounded-3xl flex flex-col items-center justify-center w-130 drop-shadow-md drop-shadow-amber-950"
           >
-            <h2 className="text-3xl font-bold text-center text-orange-900 mb-6">
+            <h2 className="text-3xl font-medium text-center font-inter text-amber-950 mb-7">
               Sign Up
             </h2>
 
@@ -56,7 +50,7 @@ const Signup = () => {
               placeholder="Enter Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="mb-4 p-3 rounded-lg border outline-none focus:ring-2 focus:ring-orange-400"
+              className="mb-5 p-3 text-amber-950 rounded-lg w-80 outline-1 focus:ring-2 focus:ring-amber-900"
               required
             />
 
@@ -66,7 +60,7 @@ const Signup = () => {
               placeholder="Enter Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mb-4 p-3 rounded-lg border outline-none focus:ring-2 focus:ring-orange-400"
+              className="mb-5 p-3 text-amber-950 rounded-lg w-80 outline-1 focus:ring-2 focus:ring-amber-900"
               required
             />
 
@@ -76,14 +70,12 @@ const Signup = () => {
               placeholder="Enter Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mb-4 p-3 rounded-lg border outline-none focus:ring-2 focus:ring-orange-400"
+              className="mb-5 p-3 text-amber-950 rounded-lg w-80 outline-1 focus:ring-2 focus:ring-amber-900"
               required
             />
 
-            <button
-              type="submit"
-              className="bg-orange-900 text-white p-3 rounded-lg hover:bg-orange-800 transition"
-            >
+            <button type="submit"
+              className="bg-amber-950 cursor-pointer text-white p-3 px-6 rounded-3xl hover:bg-amber-900 transition active:scale-97">
               Sign Up
             </button>
 
