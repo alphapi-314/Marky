@@ -1,0 +1,14 @@
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: marky-db
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - marky_data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=Marky
+
+volumes:
+  marky_data:
