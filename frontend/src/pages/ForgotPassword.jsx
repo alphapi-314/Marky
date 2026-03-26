@@ -9,62 +9,39 @@ const ForgotPassword = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!email) {
-      alert("Please enter email");
-      return;
-    }
+    // if (!email) {
+    //   alert("Please enter email");
+    //   return;
+    // }
 
-    console.log("Send OTP to:", email);
+    // console.log("Send OTP to:", email);
 
-    
     alert("OTP sent to your email");
 
-   
-    navigate("/verify-otp");
+    navigate("/verify");
   };
 
   return (
-    <div className="relative min-h-screen w-full">
-
-      {}
-      <div className="absolute inset-0 bg-yellow-100"></div>
-      <div className="absolute inset-0 backdrop-blur-xl bg-white/30"></div>
-
-      {}
-      <div className="relative z-10 flex flex-col min-h-screen">
-        
+    <div className="min-h-screen w-full bg-yellow-100 flex flex-col items-center justify-center">
         <Navbar />
+        <div className="relative flex items-center justify-center">
 
-        <div className="flex items-center justify-center flex-grow">
-          
-          <form
-            onSubmit={handleSubmit}
-            className="bg-yellow-50 p-10 rounded-2xl shadow-2xl flex flex-col w-96 border border-yellow-200"
-          >
-            <h2 className="text-2xl font-bold text-center text-orange-900 mb-6">
-              Forgot Password
-            </h2>
+          <form onSubmit={handleSubmit} className="bg-yellow-50 p-13 font-inter text-center rounded-3xl flex flex-col items-center justify-center w-105 drop-shadow-amber-950 drop-shadow-md">
 
-            <input
-              type="email"
-              placeholder="Enter your Email"
-              value={email}
+            <h2 className="text-3xl font-medium text-center font-inter text-amber-950 mb-9"> Forgot Password</h2>
+
+            <input type="email" placeholder="Enter your Email" value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mb-4 p-3 rounded-lg border outline-none focus:ring-2 focus:ring-orange-400"
+              className="mb-6 p-3 text-amber-950 rounded-lg w-80 outline-1 focus:ring-2 focus:ring-amber-900"
               required
             />
 
-            <button
-              type="submit"
-              className="bg-orange-900 text-white p-3 rounded-lg hover:bg-orange-800 transition"
-            >
+            <button type="submit" className="bg-amber-950 cursor-pointer text-yellow-50 w-auto p-3 px-7 rounded-3xl hover:bg-amber-900 transition active:scale-97">
               Send OTP
             </button>
-
           </form>
 
         </div>
-      </div>
     </div>
   );
 };

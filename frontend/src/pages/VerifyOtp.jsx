@@ -32,85 +32,56 @@ const VerifyOtp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!otp) {
-      alert("Enter OTP");
-      return;
-    }
+    // if (!otp) {
+    //   alert("Enter OTP");
+    //   return;
+    // }
 
-    console.log("OTP:", otp);
+    // console.log("OTP:", otp);
 
     alert("OTP Verified");
-    navigate("/reset-password");
+    navigate("/reset");
   };
 
   return (
-    <div className="relative min-h-screen w-full">
-
-      {}
-      <div className="absolute inset-0 bg-yellow-100"></div>
-      <div className="absolute inset-0 backdrop-blur-xl bg-white/30"></div>
-
-      {}
-      <div className="relative z-10 flex flex-col min-h-screen">
-        
+    <div className="min-h-screen w-full bg-yellow-100 flex flex-col items-center justify-center">  
         <Navbar />
 
-        <div className="flex items-center justify-center flex-grow">
+        <div className="relative flex font-inter items-center justify-center">
           
-          <form
-            onSubmit={handleSubmit}
-            className="bg-yellow-50 p-10 rounded-2xl shadow-2xl flex flex-col w-96 border border-yellow-200"
-          >
-            <h2 className="text-2xl font-bold text-center text-orange-900 mb-6">
-              Verify OTP
+          <form onSubmit={handleSubmit} className="bg-yellow-50 p-12 font-inter text-center rounded-3xl flex flex-col items-center justify-center w-105 drop-shadow-amber-950 drop-shadow-md">
+            <h2 className="text-3xl font-medium text-center text-amber-950 mb-8"> Verify OTP
             </h2>
 
-            {}
-            <input
-              type="text"
-              placeholder="Enter OTP"
-              value={otp}
+            <input type="text" placeholder="Enter OTP" value={otp}
               onChange={(e) => setOtp(e.target.value)}
-              className="mb-4 p-3 rounded-lg border outline-none focus:ring-2 focus:ring-orange-400"
+              className="mb-6 p-3 text-amber-950 rounded-lg w-80 outline-1 focus:ring-2 focus:ring-amber-900"
               required
             />
 
-            {}
-            <div className="flex items-center justify-center gap-2 mb-3">
-              
-              {}
+            <div className="flex items-center justify-center mb-2 gap-2">
               {timer > 0 && (
-                <span className="text-gray-600 text-sm">
+                <span className="text-amber-950 text-sm">
                   00:{timer < 10 ? `0${timer}` : timer}
                 </span>
               )}
 
-              {}
               <span
-                onClick={handleResend}
-                className={`text-base ${
+                onClick={handleResend} className={`text-base ${
                   timer > 0
                     ? "text-gray-400 cursor-not-allowed"
                     : "text-orange-900 cursor-pointer hover:underline"
                 }`}
-              >
-                Resend OTP
+              > Resend OTP
               </span>
-
             </div>
 
-            {}
-            <button
-              type="submit"
-              className="bg-orange-900 text-white p-3 rounded-lg hover:bg-orange-800 transition"
-            >
-              Verify OTP
+            <button type="submit" className="bg-amber-950 mt-1 w-auto cursor-pointer text-yellow-50 p-3 px-7 rounded-3xl hover:bg-amber-900 transition active:scale-97">
+              Verify
             </button>
 
           </form>
-
         </div>
-      </div>
     </div>
   );
 };

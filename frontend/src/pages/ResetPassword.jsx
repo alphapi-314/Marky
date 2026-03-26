@@ -10,62 +10,42 @@ const ResetPassword = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!newPassword) {
-      alert("Enter new password");
-      return;
-    }
+    // if (!newPassword) {
+    //   alert("Enter new password");
+    //   return;
+    // }
 
-    console.log("New Password:", newPassword);
+    // console.log("New Password:", newPassword);
 
     
     alert("Password reset successful!");
 
-    navigate("/"); 
+    navigate("/login"); 
   };
 
   return (
-    <div className="relative min-h-screen w-full">
-
-      {}
-      <div className="absolute inset-0 bg-yellow-100"></div>
-      <div className="absolute inset-0 backdrop-blur-xl bg-white/30"></div>
-
-      {}
-      <div className="relative z-10 flex flex-col min-h-screen">
-        
+    <div className="min-h-screen w-full bg-yellow-100 flex flex-col items-center justify-center">
         <Navbar />
-
-        <div className="flex items-center justify-center flex-grow">
-          
-          <form
-            onSubmit={handleSubmit}
-            className="bg-yellow-50 p-10 rounded-2xl shadow-2xl flex flex-col w-96 border border-yellow-200"
-          >
-            <h2 className="text-2xl font-bold text-center text-orange-900 mb-6">
-              Reset Password
-            </h2>
-
-            {}
-            <input
-              type="password"
-              placeholder="Enter New Password"
-              value={newPassword}
+        <div>
+          <form onSubmit={handleSubmit} className="bg-yellow-50 py-11 font-inter text-center rounded-3xl flex flex-col items-center justify-center w-115 drop-shadow-amber-950 drop-shadow-md">
+            <h2 className="text-3xl font-medium text-center font-inter text-amber-950 mb-8">Reset Password</h2>
+            <input type="password" placeholder="Enter New Password" value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
-              className="mb-4 p-3 rounded-lg border outline-none focus:ring-2 focus:ring-orange-400"
+              className="mb-5 p-3 text-amber-950 rounded-lg w-80 outline-1 focus:ring-2 focus:ring-amber-900"
               required
             />
-
+            <input type="password" placeholder="Enter Password Again" value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              className="mb-5 p-3 text-amber-950 rounded-lg w-80 outline-1 focus:ring-2 focus:ring-amber-900"
+              required
+            />
             <button
               type="submit"
-              className="bg-orange-900 text-white p-3 rounded-lg hover:bg-orange-800 transition"
-            >
-              Reset Password
+              className="bg-amber-950 w-auto cursor-pointer mt-1 text-yellow-50 p-3 px-7 rounded-3xl hover:bg-amber-900 transition active:scale-97">
+              Reset
             </button>
-
           </form>
-
         </div>
-      </div>
     </div>
   );
 };
