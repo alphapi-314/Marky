@@ -22,7 +22,6 @@ export class CompilerController {
             if (title) {
                 content = title + "\n" + content;
             }
-            console.log(content);
             const parser = new Parser();
             const ast = parser.parse(content).toJSON();
             return res.status(200).json({ success: true, ast });
