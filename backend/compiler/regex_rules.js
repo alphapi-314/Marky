@@ -57,7 +57,7 @@ const inlineTokenPattern = new RegExp(
 
 const CODE_INDENT = 4;
 
-module.exports = {
+export {
     reHtmlBlockOpen,
     blockTokenPattern,
     reHeadingID,

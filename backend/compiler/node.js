@@ -110,4 +110,4 @@ class Node {
     }
 }
 
-module.exports = { Node };
+export { Node };

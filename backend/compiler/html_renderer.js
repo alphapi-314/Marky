@@ -270,4 +270,4 @@ class HtmlRenderer {
     }
 }
 
-module.exports = { HtmlRenderer };
+export { HtmlRenderer };

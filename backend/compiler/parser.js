@@ -1,14 +1,14 @@
 'use strict';
 
-const { Node } = require('./node');
-const {
+import { Node } from './node.js';
+import {
     reHtmlBlockOpen,
     blockTokenPattern,
     reHeadingID,
     reLineEnding,
     inlineTokenPattern,
     CODE_INDENT,
-} = require('./regex_rules');
+} from './regex_rules.js';
 
 function htmlUnescape(str) {
     return str
@@ -690,4 +690,4 @@ class Parser {
     }
 }
 
-module.exports = { InlineParser, Parser };
+export { InlineParser, Parser };
