@@ -1,9 +1,12 @@
-import React from 'react'
+// import React from 'react'
 import { useState } from 'react'
 import { HtmlRenderer } from '../render/html_renderer'
-import { Parser } from '../render/parser'
+import axios from 'axios'
+// import { Parser } from '../render/parser'
 import Navbar from '../components/Navbar'
 import { previewStyles } from '../render/styles'
+
+const renderer = new HtmlRenderer();
 
 const TextEditor = () => {
 
@@ -11,22 +14,32 @@ const TextEditor = () => {
   const [Html, setHtml] = useState("")
   const [Title, setTitle] = useState("")
 
-  function preview() {
-    try {
-      const parser=new Parser();
-      const node=parser.parse(Markdown);
-      const json=node.toJSON();   // markdown → JSON
-      const htmlRenderer=new HtmlRenderer();
-      const result=`<h1 class='text-4xl font-semibold text-center mt-6 mb-6 text-gray-900'>${Title}</h1>` +  htmlRenderer.render(json);   // JSON → HTML
-      console.log("json: ",json);
-      console.log("rendered: ",result);
-      setHtml(result)
-    }
-    catch(error) {
-      console.error(error);
-      setHtml("<p>Error in parsing markdown</p>");
-    }
-  }
+  const preview = async () => {
+    const response = await axios.post('http://localhost:5000/api/compiler/preview', {
+      text: Markdown,
+      title: Title
+    });
+    const ast=response.data.ast;
+    const html=renderer.render(ast);
+    setHtml(html);
+  };
+
+  // function preview() {
+  //   try {
+  //     const parser=new Parser();
+  //     const node=parser.parse(Markdown);
+  //     const json=node.toJSON();   // markdown → JSON
+  //     const htmlRenderer=new HtmlRenderer();
+  //     const result=`<h1 class='text-4xl font-semibold text-center mt-6 mb-6 text-gray-900'>${Title}</h1>` +  htmlRenderer.render(json);   // JSON → HTML
+  //     console.log("json: ",json);
+  //     console.log("rendered: ",result);
+  //     setHtml(result)
+  //   }
+  //   catch(error) {
+  //     console.error(error);
+  //     setHtml("<p>Error in parsing markdown</p>");
+  //   }
+  // }
 
   return (
     <div className='bg-yellow-100 flex flex-col min-h-screen pt-[84px]'>
