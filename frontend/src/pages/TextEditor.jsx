@@ -20,7 +20,9 @@ const TextEditor = () => {
       title: Title
     });
     const ast=response.data.ast;
+    console.log("AST:", typeof(ast));
     const html=renderer.render(ast);
+    console.log("HTML:", html);
     setHtml(html);
   };
 

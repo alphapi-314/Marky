@@ -23,7 +23,7 @@ export class CompilerController {
                 content = title + "\n" + content;
             }
             const parser = new Parser();
-            const ast = parser.parse(content).toJSON();
+            const ast = JSON.parse(parser.parse(content).toJSON());
             return res.status(200).json({ success: true, ast });
         } catch (error) {
             console.error("Preview error:", error);
