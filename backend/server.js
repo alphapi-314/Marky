@@ -1,12 +1,11 @@
+import 'dotenv/config';
 import express from 'express';
-import dotenv from 'dotenv';
 import cors from 'cors';
 import { connectDB } from './config/db.js';
 import userRouter from './routes/userRoutes.js';
 import compilerRouter from './routes/compilerRoutes.js';
 import pageRouter from './routes/pageRoutes.js';
 
-dotenv.config();
 connectDB();
 
 const app = express();
@@ -14,9 +13,8 @@ const app = express();
 app.use(cors({
     origin: process.env.ORIGIN,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true 
+    credentials: true
 }));
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
