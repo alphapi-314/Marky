@@ -8,6 +8,7 @@ import Signup from './pages/Signup'
 import ForgotPassword from './pages/ForgotPassword'
 import ResetPassword from './pages/ResetPassword'
 import VerifyOtp from './pages/VerifyOtp'   
+import Blog from './pages/Blog'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -23,6 +24,7 @@ function App() {
         <Route path="/reset" element={<ResetPassword />} />
         <Route path="/home" element={<Home />} />
         <Route path="/editor" element={<TextEditor />} />
+        <Route path="/page/:page_id" element={<Blog />} />
       </Routes>
     </>
   )

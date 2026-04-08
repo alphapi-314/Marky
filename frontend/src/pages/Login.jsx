@@ -1,48 +1,49 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import axios from 'axios'
 
 const Login = () => {
   const navigate = useNavigate();
 
-  const [loginInput, setLoginInput] = useState("");
-  const [password, setPassword] = useState("");
+  const [Input, setInput] = useState("")
+  const [Password, setPassword] = useState("")
 
-  const handleSubmit = (e) => {
+  async function chkLogin(e) {
     e.preventDefault();
-
-    // let isEmail = loginInput.includes("@");
-
-    // if (!loginInput || !password) {
-    //   alert("Please fill all fields");
-    //   return;
-    // }
-
-    // if (isEmail) {
-    //   console.log("Login using EMAIL:", loginInput);
-    // } 
-    // else {
-    //   console.log("Login using USERNAME:", loginInput);
-    // }
-    alert("Login Successful!");
-    navigate("/home");
-  };
+    try {
+        const isEmail=Input.includes('@');
+        const response=await axios.post("http://localhost:5000/api/user/login", {
+          email: isEmail ? Input : undefined,
+          username: isEmail ? undefined : Input,
+          password: Password
+        })
+        if (response.data.success) {
+              alert("Login Successful!");
+              navigate("/home");
+        }
+    }
+    catch(err) {
+      console.log(err.response?.data);
+      alert("Invalid Credentials!"); 
+    }
+  }
 
   return (
     <div className="min-h-screen w-full bg-yellow-100 flex flex-col items-center justify-center"> 
           <Navbar />
         <div className="flex items-center justify-center">
-          <form onSubmit={handleSubmit} className="bg-yellow-50 py-11 font-inter text-center rounded-3xl flex flex-col items-center justify-center w-130 drop-shadow-amber-950 drop-shadow-md">
+          <form onSubmit={chkLogin} className="bg-yellow-50 py-11 font-inter text-center rounded-3xl flex flex-col items-center justify-center w-130 drop-shadow-amber-950 drop-shadow-md">
 
             <h2 className="text-4xl font-medium text-center font-inter text-amber-950 mb-8"> Login </h2>
 
-            <input type="email" placeholder="Enter Email / Username" value={loginInput}
-              onChange={(e) => setLoginInput(e.target.value)}
+            <input type="text" placeholder="Enter Email/Username" value={Input}
+              onChange={(e) => setInput(e.target.value)}
               className="mb-5 p-3 text-amber-950 rounded-lg w-80 outline-1 focus:ring-2 focus:ring-amber-900"
               required
             />
 
-            <input type="password" placeholder="Enter Password" value={password}
+            <input type="password" placeholder="Enter Password" value={Password}
               onChange={(e) => setPassword(e.target.value)}
               className="mb-3 p-3 text-amber-950 rounded-lg w-80 outline-1 focus:ring-2 focus:ring-amber-900"
               required

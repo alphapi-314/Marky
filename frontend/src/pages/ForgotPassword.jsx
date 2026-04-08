@@ -9,13 +9,6 @@ const ForgotPassword = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // if (!email) {
-    //   alert("Please enter email");
-    //   return;
-    // }
-
-    // console.log("Send OTP to:", email);
-
     alert("OTP sent to your email");
 
     navigate("/verify");

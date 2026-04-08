@@ -3,6 +3,7 @@
 html, body {
   width: 100%;
   height: 100%;
+  scrollbar-width: none;
 }
 
 @theme {
@@ -12,4 +13,252 @@ html, body {
   --font-nunito: 'Nunito', sans-serif;
   --font-inter: 'Inter', sans-serif;
   --font-jetbrains: 'JetBrains Mono', monospace;
+  --font-cormorant: 'Cormorant Garamond', serif;
+  --font-merriweather: 'Merriweather', serif;
+}
+
+.preview-editor {
+  padding: 1.9rem;
+  font-family: 'Merriweather', serif;
+  background-color: #ffe7cf;
+  color: #351105;
+  line-height: 1.7;
+  font-size: 17px;
+  scrollbar-width: none;
+}
+.preview-editor h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2em;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+.preview-editor h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8em;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-top: 1.5rem;
+}
+.preview-editor h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5em;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-top: 1.2rem;
+}
+.preview-editor h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25em;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-top: 1rem;
+}
+.preview-editor h5 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1em;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-top: 0.8rem;
+}
+.preview-editor h6 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1em;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-top: 0.8rem;
+}
+.preview-editor p { margin: 1rem 0; }
+.preview-editor ul,
+.preview-editor ol { padding-left: 1.8rem; margin: 1rem 0; }
+.preview-editor li { margin-bottom: 0.4rem; }
+.preview-editor blockquote {
+  border-left: 3px solid #1c1917;
+  padding-left: 1rem;
+  font-style: italic;
+  color: #444;
+  margin: 1.5rem 0;
+  border-radius: 0;
+}
+.preview-editor code {
+  background: #f4f4f0;
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+.preview-editor pre {
+  background: #f4f4f0;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+.preview-editor strong,
+.preview-editor b { font-weight: 700; }
+
+.preview-editor em,
+.preview-editor i { font-style: italic; }
+
+.preview-editor a {
+  color: #92400e;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.preview-editor hr {
+  border: none;
+  border-top: 1px solid #d6d3d1;
+  margin: 2rem 0;
+}
+
+.preview-editor table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2rem 0;
+  font-size: 0.95em;
+}
+.preview-editor th {
+  background: #f4f4f0;
+  font-weight: 600;
+  text-align: left;
+  padding: 8px 12px;
+  border: 1px solid #d6d3d1;
+}
+.preview-editor td {
+  padding: 8px 12px;
+  border: 1px solid #d6d3d1;
+}
+.preview-editor del,
+.preview-editor s { text-decoration: line-through; }
+.preview-editor mark {
+  background: #fef08a;
+  padding: 1px 3px;
+  border-radius: 3px;
+}
+.preview-editor img {
+  max-width: 100%;
+  border-radius: 6px;
+  margin: 1rem 0;
+}
+
+
+.preview-blog {
+  margin: 0 auto;
+  background-color: #ffe7cf;
+  color: #351105;
+  padding: 3rem 15rem;
+  font-family: 'Merriweather', serif;
+  line-height: 1.8;
+  font-size: 17px;
+}
+
+.preview-blog h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2em;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+.preview-blog h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8em;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-top: 1.5rem;
+}
+.preview-blog h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5em;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-top: 1.2rem;
+}
+.preview-blog h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25em;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-top: 1rem;
+}
+.preview-blog h5 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1em;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-top: 0.8rem;
+}
+.preview-blog h6 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1em;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-top: 0.8rem;
+}
+.preview-blog p { margin: 1rem 0; }
+.preview-blog ul,
+.preview-blog ol { padding-left: 1.8rem; margin: 1rem 0; }
+.preview-blog li { margin-bottom: 0.4rem; }
+.preview-blog blockquote {
+  border-left: 3px solid #1c1917;
+  padding-left: 1rem;
+  font-style: italic;
+  color: #444;
+  margin: 1.5rem 0;
+  border-radius: 0;
+}
+.preview-blog code {
+  background: #f4f4f0;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+.preview-blog pre {
+  background: #f4f4f0;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+.preview-blog strong,
+.preview-blog b { font-weight: 700; }
+
+.preview-blog em,
+.preview-blog i { font-style: italic; }
+
+.preview-blog a {
+  color: #92400e;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.preview-blog hr {
+  border: none;
+  border-top: 1px solid #d6d3d1;
+  margin: 2rem 0;
+}
+
+.preview-blog table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2rem 0;
+  font-size: 0.95em;
+}
+.preview-blog th {
+  background: #f4f4f0;
+  font-weight: 600;
+  text-align: left;
+  padding: 8px 12px;
+  border: 1px solid #d6d3d1;
+}
+.preview-blog td {
+  padding: 8px 12px;
+  border: 1px solid #d6d3d1;
+}
+.preview-blog del,
+.preview-blog s { text-decoration: line-through; }
+.preview-blog mark {
+  background: #fef08a;
+  padding: 1px 3px;
+  border-radius: 3px;
+}
+.preview-blog img {
+  max-width: 100%;
+  border-radius: 6px;
+  margin: 1rem 0;
 }

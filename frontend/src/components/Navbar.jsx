@@ -11,8 +11,7 @@ const Navbar = () => {
           <div className='flex justify-between gap-7 flex-row items-center'>
             <div className="font-inter text-yellow-100 text-lg flex gap-7 text-shadow-2xs text-shadow-black">
               <Link className='transition active:scale-95' to='/'>Home</Link>
-              <Link className='transition active:scale-95' to='/'>Blogs</Link>
-              <Link className='transition active:scale-95' to='/editor'>Text Editor</Link>
+              <Link className='transition active:scale-95' to='/editor'>Write</Link>
               <Link className='transition active:scale-95' to='/'>Search</Link>
             </div>
             <div className='flex items-center justify-center'>

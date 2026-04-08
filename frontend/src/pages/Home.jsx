@@ -1,19 +1,25 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
+  const navigate=useNavigate();
   return (
     <div className='bg-yellow-100 flex flex-col min-h-screen w-full'>
       <Navbar/>
       <div className="flex-grow flex flex-col items-center justify-center">
         <div className="max-w-6xl text-amber-950 text-center">
-          <h2 className="font-display font-extrabold text-4xl mb-4">About Marky!</h2>
-          <p className='[word-spacing:1px] font-inter font-normal text-xl'>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum exercitationem, eligendi officiis dignissimos molestiae officia voluptatem corporis iusto illum doloribus sed nihil vero! Accusantium error cupiditate libero repudiandae quas? Quibusdam qui perspiciatis reprehenderit dolor non sint, nostrum maiores earum distinctio fuga dicta ex a placeat magni eveniet atque, doloribus pariatur commodi sapiente? Ea dignissimos iste qui, accusantium aperiam temporibus veritatis sed quasi, officia, sit vel expedita quas sequi blanditiis odio. Consectetur unde optio id, quidem necessitatibus officiis officia obcaecati sint incidunt nesciunt quasi, ducimus rerum velit. Ad doloribus, libero, corporis numquam harum, aliquam perferendis earum iusto eius illum incidunt ratione!
+          <h2 className="font-display font-extrabold text-5xl mb-5">Welcome to Marky</h2>
+          <span>
+            <p className='[word-spacing:1px] font-inter font-normal text-xl'>
+            The simplest way to turn your ideas into a beautiful blog. No coding, no complicated builders, no messy layouts. Just write in plain Markdown, and Marky instantly transforms your words into a clean, professional webpage. Your content and design are always kept separate, so your blog stays fast, flexible, and fully yours. With real-time preview, built-in search, and effortless publishing, Marky gives every writer(beginner or expert) the power to create, manage, and share their stories without the technical headache. <span className='font-bold'>Write more. Worry less. Blog with Marky.</span>
           </p>
+          </span>
         </div>
-        <button className='mt-6 w-46 h-14 text-xl font-inter text-yellow-100 bg-amber-950 rounded-4xl hover:bg-amber-900 transition active:scale-97'>Get Started!</button>
+        <button onClick={function() {
+          navigate('/editor')
+        }} className='mt-5 w-46 h-14 text-xl font-inter text-yellow-100 bg-amber-950 rounded-4xl cursor-pointer hover:bg-amber-900 transition active:scale-97'>Start Writing</button>
       </div>
       <Footer/>
     </div>

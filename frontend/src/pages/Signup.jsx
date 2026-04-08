@@ -1,29 +1,33 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import axios from "axios";
 
 const Signup = () => {
   const navigate = useNavigate();
 
-  const [name, setName] = useState("");   
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [Name, setName] = useState("")
+  const [Email, setEmail] = useState("")
+  const [Password, setPassword] = useState("")
 
-  const handleSubmit = (e) => {
-    // e.preventDefault();
-
-    // if (!name || !email || !password) {
-    //   alert("Please fill all fields");
-    //   return;
-    // }
-
-    // console.log("Name:", name);   
-    // console.log("Email:", email);
-    // console.log("Password:", password);
-
-    alert("Signup Successful!");
-    navigate("/home");
-  };
+  async function chkSignup(e) {
+    e.preventDefault();
+    try {
+        const response=await axios.post("http://localhost:5000/api/user/signup", {
+          username: Name,
+          email: Email,
+          password: Password
+        })
+        if (response.data.success) {
+            alert("Signup Successful!");
+            navigate("/login");
+        }
+    }
+    catch(err) {
+      console.log(err.response?.data);
+      alert("Signup Failed!"); 
+    }
+  }
 
   return (
     <div className="min-h-screen w-full">
@@ -32,23 +36,23 @@ const Signup = () => {
         <Navbar />
         <div className="flex items-center justify-center flex-grow">
           
-          <form onSubmit={handleSubmit}
+          <form onSubmit={chkSignup}
             className="bg-yellow-50 py-11  font-inter text-center rounded-3xl flex flex-col items-center justify-center w-130 drop-shadow-md drop-shadow-amber-950">
             <h2 className="text-4xl font-medium text-center font-inter text-amber-950 mb-8"> Sign Up </h2>
 
-            <input type="text" placeholder="Enter Name" value={name}
+            <input type="text" placeholder="Enter Name" value={Name}
               onChange={(e) => setName(e.target.value)}
               className="mb-5 p-3 text-amber-950 rounded-lg w-80 outline-1 focus:ring-2 focus:ring-amber-900"
               required
             />
 
-            <input type="email" placeholder="Enter Email" value={email}
+            <input type="email" placeholder="Enter Email" value={Email}
               onChange={(e) => setEmail(e.target.value)}
               className="mb-5 p-3 text-amber-950 rounded-lg w-80 outline-1 focus:ring-2 focus:ring-amber-900"
               required
             />
 
-            <input type="password" placeholder="Enter Password" value={password}
+            <input type="password" placeholder="Enter Password" value={Password}
               onChange={(e) => setPassword(e.target.value)}
               className="mb-5 p-3 text-amber-950 rounded-lg w-80 outline-1 focus:ring-2 focus:ring-amber-900"
               required

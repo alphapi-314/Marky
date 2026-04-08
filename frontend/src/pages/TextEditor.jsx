@@ -1,10 +1,9 @@
-// import React from 'react'
 import { useState } from 'react'
 import { HtmlRenderer } from '../render/html_renderer'
 import axios from 'axios'
-// import { Parser } from '../render/parser'
+import Popup from '../components/Popup'
 import Navbar from '../components/Navbar'
-import { previewStyles } from '../render/styles'
+// import { previewStyles } from '../render/styles'
 
 const renderer = new HtmlRenderer();
 
@@ -13,40 +12,55 @@ const TextEditor = () => {
   const [Markdown, setMarkdown] = useState("")
   const [Html, setHtml] = useState("")
   const [Title, setTitle] = useState("")
+  const [PageId, setPageId] = useState("");
+  const [ShowPopup, setShowPopup] = useState(false);
 
-  const preview = async () => {
+  async function preview() {
+    if (!Title) {
+      alert("Please assign a title!");
+      return;
+    }
+    if (!Markdown) {
+        alert("Please add some content!");
+        return;
+    }
     const response = await axios.post('http://localhost:5000/api/compiler/preview', {
       text: Markdown,
       title: Title
     });
     const ast=response.data.ast;
-    console.log("AST:", typeof(ast));
     const html=renderer.render(ast);
-    console.log("HTML:", html);
     setHtml(html);
   };
 
-  // function preview() {
-  //   try {
-  //     const parser=new Parser();
-  //     const node=parser.parse(Markdown);
-  //     const json=node.toJSON();   // markdown → JSON
-  //     const htmlRenderer=new HtmlRenderer();
-  //     const result=`<h1 class='text-4xl font-semibold text-center mt-6 mb-6 text-gray-900'>${Title}</h1>` +  htmlRenderer.render(json);   // JSON → HTML
-  //     console.log("json: ",json);
-  //     console.log("rendered: ",result);
-  //     setHtml(result)
-  //   }
-  //   catch(error) {
-  //     console.error(error);
-  //     setHtml("<p>Error in parsing markdown</p>");
-  //   }
-  // }
+  async function submit() {
+    if (!Title) {
+      alert("Please assign a title!");
+      return;
+    }
+    if (!Markdown) {
+        alert("Please add some content!");
+        return;
+    }
+    try {
+      const response = await axios.post('http://localhost:5000/api/compiler/submit', {
+        text: Markdown,
+        title: Title,
+      });
+      if (response.data.success) {
+        setPageId(response.data.page.page_id);
+        setShowPopup(true);
+      }
+    }
+    catch(err) {
+      alert("Submit failed!");
+    }
+  }
 
   return (
     <div className='bg-yellow-100 flex flex-col min-h-screen pt-[84px]'>
         <Navbar/>
-        <h1 className='text-4xl font-inter font-medium  text-center mt-5 mb-3 text-shadow-xs text-amber-950'>Markdown To Web-Page</h1>
+        <h1 className='text-4xl font-inter font-medium  text-center mt-6 mb-2 text-amber-950'>Markdown To Web-Page</h1>
         <div className="flex justify-center w-full gap-8 p-7">
 
           {/* text editor */}
@@ -66,19 +80,27 @@ const TextEditor = () => {
             <div className='flex justify-end gap-5'>
               <button onClick={preview} 
               className="bg-amber-950 font-inter cursor-pointer text-yellow-100 h-11 px-5 w-fit hover:bg-amber-900 rounded-2xl active:scale-97">PREVIEW</button>
-              <button className="bg-amber-950 font-inter cursor-pointer text-yellow-100 h-11 px-5 w-fit hover:bg-amber-900 rounded-2xl active:scale-96">SUBMIT</button>
+              <button onClick={submit} className="bg-amber-950 font-inter cursor-pointer text-yellow-100 h-11 px-5 w-fit hover:bg-amber-900 rounded-2xl active:scale-96">SUBMIT</button>
             </div>
           </div>
 
           {/* preview section */}
           <div className="w-1/2">
-            <div className="rounded-lg outline-2 w-full outline-amber-950 h-[777px] bg-white p-7 overflow-auto">
-              <style>{previewStyles}</style>
-              <div className="preview" dangerouslySetInnerHTML={{ __html: Html }}/></div>
+            <div  className="rounded-lg outline-2 w-full outline-amber-950 h-[777px] overflow-auto" style={{ backgroundColor: '#ffe7cf' }}>
+                <div className="preview-editor">
+                  {Html && <h1 style={{ textAlign: 'center' }}>{Title}</h1>}
+                  <div dangerouslySetInnerHTML={{ __html: Html }} />
+                </div>
+            </div> 
+            </div>
           </div>
-        </div>
+
+          {/* blog section */}
+          {ShowPopup && <Popup pageId={PageId} onClose={ function() {
+            setShowPopup(false)
+        }}/> }
     </div>
   )
 }
 
-export default TextEditor
+export default TextEditor 

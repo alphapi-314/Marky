@@ -19,9 +19,6 @@ export class CompilerController {
             else {
                 return res.status(400).json({ success: false, message: "No text provided" });
             }
-            if (title) {
-                content = title + "\n" + content;
-            }
             const parser = new Parser();
             const ast = JSON.parse(parser.parse(content).toJSON());
             return res.status(200).json({ success: true, ast });
@@ -39,7 +36,7 @@ export class CompilerController {
             }
 
             const parser = new Parser();
-            const ast = parser.parse(text).toJSON();
+            const ast = JSON.parse(parser.parse(text).toJSON());
 
             const contentID = Date.now() + Math.floor(Math.random() * 1000);
             const page_id = Date.now() + Math.floor(Math.random() * 1000);
@@ -58,14 +55,15 @@ export class CompilerController {
             });
             await newPageData.save();
 
-            const embeddings = await generateEmbedding(text);
+            // const embeddings = await generateEmbedding(text);
 
             const newPage = new pageModel({
                 page_id,
                 authorName: resolvedAuthorName,
                 title,
                 contentID,
-                embeddings
+                // embeddings,
+                embeddings: []
             });
             await newPage.save();
 
