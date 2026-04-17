@@ -10,11 +10,8 @@ const pageSchema = new mongoose.Schema(
         },
         authorName: {
             type: String,
-            // required: true,
-            // trim: true
-            required: false,
+            required: true,
             trim: true,
-            default: 'Anonymous'
         },
         title: {
             type: String,

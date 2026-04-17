@@ -6,7 +6,6 @@ const compilerRouter = express.Router();
 const compilerController = new CompilerController();
 
 compilerRouter.post('/preview', compilerController.preview);
-compilerRouter.post('/submit', compilerController.submit);
-// compilerRouter.post('/submit', authorize, compilerController.submit);
+compilerRouter.post('/submit', authorize, compilerController.submit);
 
 export default compilerRouter;

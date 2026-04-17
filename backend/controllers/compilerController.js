@@ -30,7 +30,8 @@ export class CompilerController {
 
     submit = async (req, res) => {
         try {
-            const { userId, text, title } = req.body;
+            const { text, title } = req.body;
+            const userId = req.userId;
             if (!text || !title) {
                 return res.status(400).json({ success: false, message: "Title and Content are required" });
             }
@@ -55,14 +56,11 @@ export class CompilerController {
             });
             await newPageData.save();
 
-            // const embeddings = await generateEmbedding(text);
-
             const newPage = new pageModel({
                 page_id,
                 authorName: resolvedAuthorName,
                 title,
                 contentID,
-                // embeddings,
                 embeddings: []
             });
             await newPage.save();

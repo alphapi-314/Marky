@@ -7,8 +7,9 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import ForgotPassword from './pages/ForgotPassword'
 import ResetPassword from './pages/ResetPassword'
-import VerifyOtp from './pages/VerifyOtp'   
+import VerifyOtp from './pages/VerifyOtp'
 import Blog from './pages/Blog'
+import Posts from './pages/Posts'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -25,6 +26,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/editor" element={<TextEditor />} />
         <Route path="/page/:page_id" element={<Blog />} />
+        <Route path="/posts" element={<Posts />} />
       </Routes>
     </>
   )

@@ -13,7 +13,7 @@ const Blog = () => {
 
   useEffect(() => {
     async function fetchPage() {
-      const response = await axios.get(`http://localhost:5000/api/pages/${page_id}`)
+      const response = await axios.get(`/api/pages/${page_id}`)
       const { page } = response.data
       setTitle(page.title)
       const html = renderer.render(page.parsedContent)

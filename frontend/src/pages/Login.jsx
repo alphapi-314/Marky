@@ -12,20 +12,26 @@ const Login = () => {
   async function chkLogin(e) {
     e.preventDefault();
     try {
-        const isEmail=Input.includes('@');
-        const response=await axios.post("http://localhost:5000/api/user/login", {
-          email: isEmail ? Input : undefined,
-          username: isEmail ? undefined : Input,
-          password: Password
-        })
-        if (response.data.success) {
-              alert("Login Successful!");
-              navigate("/home");
-        }
-    }
-    catch(err) {
+      const isEmail = Input.includes("@");
+      const payload = {
+        password: Password,
+      };
+      if (isEmail) payload.email = Input.trim().toLowerCase();
+      else payload.username = Input.trim();
+      const response = await axios.post(
+        "/api/user/login",
+        payload
+      );
+      if (response.data.success) {
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        alert("Login Successful!");
+        navigate("/");
+      }
+    } 
+    catch (err) {
       console.log(err.response?.data);
-      alert("Invalid Credentials!"); 
+      alert(err.response?.data?.message || "Invalid Credentials!");
     }
   }
 
@@ -33,7 +39,7 @@ const Login = () => {
     <div className="min-h-screen w-full bg-yellow-100 flex flex-col items-center justify-center"> 
           <Navbar />
         <div className="flex items-center justify-center">
-          <form onSubmit={chkLogin} className="bg-yellow-50 py-11 font-inter text-center rounded-3xl flex flex-col items-center justify-center w-130 drop-shadow-amber-950 drop-shadow-md">
+          <form onSubmit={chkLogin} className="bg-yellow-50 py-11 font-inter text-center rounded-3xl flex flex-col items-center justify-center w-130 border drop-shadow-amber-950 drop-shadow-md">
 
             <h2 className="text-4xl font-medium text-center font-inter text-amber-950 mb-8"> Login </h2>
 

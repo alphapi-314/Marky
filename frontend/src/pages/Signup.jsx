@@ -10,22 +10,28 @@ const Signup = () => {
   const [Email, setEmail] = useState("")
   const [Password, setPassword] = useState("")
 
+
   async function chkSignup(e) {
     e.preventDefault();
     try {
-        const response=await axios.post("http://localhost:5000/api/user/signup", {
-          username: Name,
-          email: Email,
-          password: Password
-        })
-        if (response.data.success) {
-            alert("Signup Successful!");
-            navigate("/login");
+      const response = await axios.post(
+        "/api/user/signup",
+        {
+          username: Name.trim(),
+          email: Email.trim().toLowerCase(),
+          password: Password,
         }
-    }
-    catch(err) {
+      );
+      if (response.data.success) {
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        alert("Signup Successful!");
+        navigate("/");
+      }
+    } 
+    catch (err) {
       console.log(err.response?.data);
-      alert("Signup Failed!"); 
+      alert(err.response?.data?.message || "Signup Failed!");
     }
   }
 
@@ -37,7 +43,7 @@ const Signup = () => {
         <div className="flex items-center justify-center flex-grow">
           
           <form onSubmit={chkSignup}
-            className="bg-yellow-50 py-11  font-inter text-center rounded-3xl flex flex-col items-center justify-center w-130 drop-shadow-md drop-shadow-amber-950">
+            className="bg-yellow-50 py-11  font-inter text-center rounded-3xl flex flex-col items-center justify-center w-130 border drop-shadow-md drop-shadow-amber-950">
             <h2 className="text-4xl font-medium text-center font-inter text-amber-950 mb-8"> Sign Up </h2>
 
             <input type="text" placeholder="Enter Name" value={Name}
