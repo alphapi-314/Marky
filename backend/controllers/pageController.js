@@ -45,7 +45,8 @@ export class pageController {
     postComment = async (req, res) => {
         try {
             const { page_id } = req.params;
-            const { userId, content, parentID } = req.body;
+            const userId = req.userId;
+            const { content, parentID } = req.body;
 
             if (!content) {
                 return res.status(400).json({ success: false, message: "Comment content is required" });
@@ -97,34 +98,46 @@ export class pageController {
     searchPages = async (req, res) => {
         try {
             const { query } = req.query;
-            if (!query) {
-                return res.status(400).json({ success: false, message: "Search query required" });
+            let matchStage = {};
+
+            if (query && query.trim() !== "") {
+                matchStage = {
+                    title: { $regex: query, $options: "i" }
+                };
             }
 
-            const queryEmbedding = await generateEmbedding(query);
-
             const results = await pageModel.aggregate([
+                { $match: matchStage },
                 {
-                    $vectorSearch: {
-                        index: "vector_index",
-                        path: "embeddings",
-                        queryVector: queryEmbedding,
-                        numCandidates: 100,
-                        limit: 10
+                    $group: {
+                        _id: "$title",
+                        doc: { $first: "$$ROOT" }
                     }
                 },
                 {
-                    $project: {
-                        embeddings: 0,
-                        score: { $meta: "vectorSearchScore" }
-                    }
+                    $replaceRoot: { newRoot: "$doc" }
+                },
+
+                {
+                    $sort: { createdAt: -1 }
+                },
+
+                {
+                    $limit: 10
                 }
             ]);
 
-            res.status(200).json({ success: true, results });
+            res.status(200).json({
+                success: true,
+                results
+            });
+
         } catch (error) {
             console.log(error);
-            res.status(500).json({ success: false, message: "Error searching pages" });
+            res.status(500).json({
+                success: false,
+                message: "Error searching pages"
+            });
         }
     };
 

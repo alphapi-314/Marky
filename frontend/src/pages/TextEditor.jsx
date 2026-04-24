@@ -86,27 +86,29 @@ const TextEditor = () => {
           {/* text editor */}
           <div className=" w-1/2 flex flex-col gap-6">
             <textarea value={Title} onChange={ function(e) {
-              setTitle(e.target.value)
-            }}
-             className="rounded-lg outline-2 w-full py-3 outline-amber-950 h-[53px] text-amber-950 font-jetbrains bg-yellow-50 p-5 overflow-auto"
-            placeholder='enter title here:'></textarea>
+                setTitle(e.target.value)
+              }}
+              className="rounded-lg outline-2 w-full py-3 outline-amber-950 h-[53px] text-amber-950 font-jetbrains bg-yellow-50 p-5 overflow-auto"
+              placeholder='enter title here:'>
+            </textarea>
 
             <textarea value={Markdown} onChange={ function(e) {
-              setMarkdown(e.target.value)
-            }} className="rounded-lg outline-2 w-full outline-amber-950 h-[700px] text-amber-950 font-jetbrains bg-yellow-50 p-5 overflow-auto"
-            placeholder="enter markdown here:"></textarea>
+                setMarkdown(e.target.value)
+              }} className="rounded-lg outline-2 w-full outline-amber-950 h-[700px] text-amber-950 font-jetbrains bg-yellow-50 p-5 overflow-auto"
+              placeholder="enter markdown here:">
+            </textarea>
 
             {/* buttons */}
             <div className='flex justify-end gap-5'>
               <button onClick={preview} 
-              className="bg-amber-950 font-inter cursor-pointer text-yellow-100 h-11 px-5 w-fit hover:bg-amber-900 rounded-2xl active:scale-97">PREVIEW</button>
-              <button onClick={submit} disabled={!isLoggedIn} className={`bg-amber-950 text-yellow-100 h-11 cursor-pointer px-5 rounded-2xl ${!isLoggedIn ? 'opacity-50 cursor-not-allowed' : 'hover:bg-amber-900'}`}>SUBMIT</button>
+              className="bg-amber-950 font-inter cursor-pointer text-yellow-100 h-11 px-4 w-fit hover:bg-amber-900 rounded-2xl active:scale-97">PREVIEW</button>
+              <button onClick={submit} disabled={!isLoggedIn} className={`bg-amber-950 text-yellow-100 h-11 cursor-pointer px-4 rounded-2xl ${!isLoggedIn ? 'opacity-50 cursor-not-allowed' : 'hover:bg-amber-900'}`}>SUBMIT</button>
             </div>
           </div>
 
           {/* preview section */}
           <div className="w-1/2">
-            <div  className="rounded-lg outline-2 w-full outline-amber-950 h-[777px]  overflow-auto" style={{ backgroundColor: '#ffe7cf' }}>
+            <div  className="scrollbar-hide rounded-lg outline-2 w-full outline-amber-950 h-[777px]  overflow-auto " style={{ backgroundColor: '#8e4419' }}>
                 <div className="preview-editor">
                   {Html && <h1 style={{ textAlign: 'center' }}>{Title}</h1>}
                   <div dangerouslySetInnerHTML={{ __html: Html }} />

@@ -17,11 +17,20 @@ html, body {
   --font-merriweather: 'Merriweather', serif;
 }
 
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 .preview-editor {
   padding: 1.9rem;
   font-family: 'Merriweather', serif;
-  background-color: #ffe7cf;
-  color: #351105;
+  background-color: #8e4419 ;
+  color: #fffcd6;
   line-height: 1.7;
   font-size: 17px;
   scrollbar-width: none;
@@ -142,8 +151,8 @@ html, body {
 
 .preview-blog {
   margin: 0 auto;
-  background-color: #ffe7cf;
-  color: #351105;
+  background-color: #8e4419 ;
+  color: #fffcd6;
   padding: 3rem 15rem;
   font-family: 'Merriweather', serif;
   line-height: 1.8;

@@ -51,7 +51,8 @@ const Posts = () => {
     <div className="bg-yellow-100 min-h-screen pt-[100px]">
       <Navbar/>
       <h1 className="text-4xl font-semibold text-center text-amber-950 mb-8 mt-5">My Blogs</h1>
-      <div className="max-w-2xl mx-auto bg-yellow-50 border border-amber-950 rounded-2xl p-6 shadow-md shadow-amber-950">
+      <div className="max-w-2xl mx-auto bg-yellow-50 border border-amber-950 rounded-3xl p-6 shadow-md shadow-amber-950">
+
         {loading ? (
           <p className="text-center">Loading...</p>
         ) : pages.length === 0 ? (
@@ -64,7 +65,7 @@ const Posts = () => {
               <div
                 key={page.page_id}
                 onClick={() => navigate(`/page/${page.page_id}`)}
-                className="w-full bg-yellow-100 p-4 rounded-xl cursor-pointer border-2 border-amber-950 hover:shadow-lg hover:scale-[1.01] transition">
+                className="w-full bg-yellow-100 p-4 rounded-2xl cursor-pointer border-2 border-amber-950 hover:shadow-lg hover:scale-[1.01] transition">
                 <h2 className="text-xl font-semibold text-amber-950 mb-1">
                   {page.title}
                 </h2>

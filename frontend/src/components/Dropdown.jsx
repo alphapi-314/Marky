@@ -17,10 +17,12 @@ const navigate = useNavigate();
               onClick={() => navigate("/profile")}
               className="text-left px-6 py-2 cursor-pointer hover:bg-amber-950 hover:text-yellow-100 transition">Profile
             </button>
+            <hr></hr>
             <button
               onClick={() => navigate("/posts")}
               className="text-left px-6 py-2 cursor-pointer hover:bg-amber-950 hover:text-yellow-100 transition">My Blogs
             </button>
+            <hr></hr>
             <button
                 onClick={logout}
                 className="text-left px-6 py-2 cursor-pointer hover:text-yellow-100 hover:bg-red-800 transition">Logout

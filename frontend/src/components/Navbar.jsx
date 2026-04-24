@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Dropdown from './Dropdown';
 
 const Navbar = () => {
-
+  const navigate=useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
   const [showMenu, setShowMenu] = useState(false);
@@ -29,7 +29,7 @@ const Navbar = () => {
 
   function logout() {
     localStorage.clear();
-    window.location.reload();
+    window.location.href = "/home";
   }
 
   return (
@@ -42,7 +42,7 @@ const Navbar = () => {
         <div className="font-inter text-yellow-100 text-lg flex gap-7">
           <Link className='transition active:scale-95' to='/'>Home</Link>
           <Link className='transition active:scale-95' to='/editor'>Write</Link>
-          <Link className='transition active:scale-95' to='/'>Search</Link>
+          <Link className='transition active:scale-95' to='/search'>Search</Link>
         </div>
 
         <div className='flex items-center justify-center'>

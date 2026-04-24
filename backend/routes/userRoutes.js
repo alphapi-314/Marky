@@ -5,6 +5,7 @@ import authorize from '../middleware/auth.js';
 const userRouter = express.Router();
 const userController = new UserController();
 
+userRouter.get('/me', authorize, userController.getMe);
 userRouter.post('/signup', userController.signup);
 userRouter.post('/login', userController.login);
 userRouter.put('/update-author', authorize, userController.updateAuthorName);

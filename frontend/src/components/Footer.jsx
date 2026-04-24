@@ -8,7 +8,6 @@ const Footer = () => {
               <p>© 2026 Marky Corporation. All rights reserved.</p>
               <span>|</span>
               <a target="_blank" rel="noopener noreferrer" className='noreferrer" hover:underline cursor-pointer' href="https://github.com/alphapi-314/Marky">Github</a>
-              {/* <a className='hover:underline cursor-pointer'>Github</a> */}
             </nav>
         </footer>
     </>
