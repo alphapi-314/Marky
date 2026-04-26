@@ -16,6 +16,10 @@ const TextEditor = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
+  document.body.style.backgroundColor = "#FEF9C3";
+  }, []);
+
+  useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) setIsLoggedIn(true);
   }, []);
@@ -108,9 +112,9 @@ const TextEditor = () => {
 
           {/* preview section */}
           <div className="w-1/2">
-            <div  className="scrollbar-hide rounded-lg outline-2 w-full outline-amber-950 h-[777px]  overflow-auto " style={{ backgroundColor: '#8e4419' }}>
+            <div  className="scrollbar-hide rounded-lg outline-2 w-full outline-amber-950 h-[777px]  overflow-auto " style={{ backgroundColor: '#f4cf97' }}>
                 <div className="preview-editor">
-                  {Html && <h1 style={{ textAlign: 'center' }}>{Title}</h1>}
+                  {Html && <h1 style={{ textAlign: 'center'}}>{Title}</h1>}
                   <div dangerouslySetInnerHTML={{ __html: Html }} />
                 </div>
             </div> 

@@ -19,6 +19,10 @@ const Blog = () => {
   const isLoggedIn = !!localStorage.getItem("token")
 
   useEffect(() => {
+  document.body.style.backgroundColor = "#f4cf97";
+  }, []);
+
+  useEffect(() => {
     async function fetchData() {
       try {
         const pageRes = await axios.get(`/api/pages/${page_id}`)
@@ -63,19 +67,23 @@ const Blog = () => {
       <Navbar />
 
       <div className="preview-blog" style={{ minHeight: '100vh', paddingTop: '124px' }}>
-        <h1 className="text-center">{Title}</h1>
-        <div className="flex justify-center items-center gap-3 mb-10 text-sm opacity-80">
-          <span className="font-medium">{author || "Anonymous"}</span>
+        <h1 className="text-center text-4xl font-bold">{Title}</h1>
+        <div className="flex justify-end items-center gap-3 text-sm opacity-80">
+          <span className="font-medium font-merriweather">{author || "Anonymous"}</span>
           <span>•</span>
           <span>{date ? new Date(date).toLocaleDateString() : ""}</span>
         </div>
 
+        <div className="h-[1px] bg-amber-950 my-7 w-full"></div>
+
         <div dangerouslySetInnerHTML={{ __html: Html }} />
 
-        <div className="max-w-2xl mt-20 px-2">
-          <h2 className="mb-5">Comments:</h2>
+        <div className="h-[2px] bg-amber-950 my-7 w-full"></div>
+
+        <div className="max-w-2xl px-1">
+          <h3 className="mb-5">Comments:</h3>
           <div className="flex items-center gap-3 border-b border-current pb-4">
-            <div className="w-9 h-9 rounded-full bg-yellow-100 text-amber-950 flex items-center justify-center font-bold">
+            <div className="w-9 h-9 rounded-full bg-amber-950 text-yellow-100 flex items-center justify-center font-bold">
               {localStorage.getItem("user")
                 ? JSON.parse(localStorage.getItem("user")).username[0].toUpperCase()
                 : "N/A"}
@@ -85,7 +93,7 @@ const Blog = () => {
               onChange={(e) => setNewComment(e.target.value)}
               placeholder={isLoggedIn ? "Add a comment..." : "Login to comment"}
               disabled={!isLoggedIn}
-              className={`flex-1 bg-transparent outline-none placeholder:opacity-60 ${
+              className={`flex-1 text-sm bg-transparent outline-none placeholder:opacity-60 ${
                 !isLoggedIn ? "opacity-50 cursor-not-allowed" : ""
               }`}
             />
@@ -94,8 +102,8 @@ const Blog = () => {
               disabled={!isLoggedIn || !newComment.trim()}
               className={`p-2 text-sm rounded-full transition ${
                 isLoggedIn && newComment.trim()
-                  ? "bg-yellow-100 text-amber-950 hover:bg-yellow-50 cursor-pointer active:scale-97"
-                  : "bg-yellow-100 text-amber-950 opacity-50 cursor-not-allowed"
+                  ? "bg-amber-950 text-yellow-100 text-sm hover:bg-amber-900 cursor-pointer active:scale-97"
+                  : "bg-amber-950 text-yellow-100 opacity-50 cursor-not-allowed"
               }`}
             >
               Comment
@@ -109,7 +117,7 @@ const Blog = () => {
             ) : (
               comments.map((c) => (
                 <div key={c.comment_id} className="flex gap-3">
-                  <div className="w-9 h-9 rounded-full bg-yellow-100 text-amber-950 flex items-center justify-center font-semibold">
+                  <div className="w-8 h-8 rounded-full bg-amber-950 text-yellow-100 flex items-center justify-center font-semibold">
                     {c.authorName?.charAt(0).toUpperCase()}
                   </div>
 
@@ -120,7 +128,7 @@ const Blog = () => {
                         {new Date(c.createdAt).toLocaleString()}
                       </span>
                     </div>
-                    <p>{c.content}</p>
+                    <p className='text-sm'>{c.content}</p>
                   </div>
                 </div>
               ))

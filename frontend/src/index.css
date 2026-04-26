@@ -29,16 +29,16 @@ html, body {
 .preview-editor {
   padding: 1.9rem;
   font-family: 'Merriweather', serif;
-  background-color: #8e4419 ;
-  color: #fffcd6;
+  background-color: #f4cf97 ;
+  color: #3F1D0B;
   line-height: 1.7;
   font-size: 17px;
   scrollbar-width: none;
 }
 .preview-editor h1 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 2.2em;
-  font-weight: 600;
+  font-size: 2.3em;
+  font-weight: 620;
   line-height: 1.2;
   margin-bottom: 1.5rem;
 }
@@ -151,8 +151,8 @@ html, body {
 
 .preview-blog {
   margin: 0 auto;
-  background-color: #8e4419 ;
-  color: #fffcd6;
+  background-color: #f4cf97 ;
+  color: #3F1D0B;
   padding: 3rem 15rem;
   font-family: 'Merriweather', serif;
   line-height: 1.8;
@@ -161,8 +161,8 @@ html, body {
 
 .preview-blog h1 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 2.2em;
-  font-weight: 600;
+  font-size: 2.3em;
+  font-weight: 620;
   line-height: 1.2;
   margin-bottom: 1.5rem;
 }
