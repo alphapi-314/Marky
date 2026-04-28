@@ -223,4 +223,52 @@ export class UserController {
             res.status(500).json({ success: false });
         }
     };
+
+    getProfile = async (req, res) => {
+        try {
+            const { page_id } = req.params;
+            const page = await pageModel.findOne({ page_id: Number(page_id) });
+            if (!page) {
+                return res.status(404).json({ success: false, message: "Page not found" });
+            }
+            res.status(200).json({ success: true, page });
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ success: false, message: "Error fetching profile" });
+        }
+    }
+
+    updateProfile = async (req, res) => {
+        try {
+            const { page_id } = req.params;
+            const { authorName, contentID, likes, dislikes } = req.body;
+            const page = await pageModel.findOne({ page_id: Number(page_id) });
+            if (!page) {
+                return res.status(404).json({ success: false, message: "Page not found" });
+            }
+            if (authorName) page.authorName = authorName;
+            if (contentID) page.contentID = contentID;
+            if (likes) page.likes = likes;
+            if (dislikes) page.dislikes = dislikes;
+            await page.save();
+            res.status(200).json({ success: true, message: "Profile updated", page });
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ success: false, message: "Error updating profile" });
+        }
+    }
+
+    getAuthorProfile = async (req, res) => {
+        try {
+            const { authorName } = req.params;
+            const pages = await pageModel.find({ authorName });
+            res.status(200).json({ success: true, pages });
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ success: false, message: "Error fetching profile" });
+        }
+    }
+
+
+
 };

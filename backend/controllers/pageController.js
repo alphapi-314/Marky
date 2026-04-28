@@ -141,4 +141,109 @@ export class pageController {
         }
     };
 
+    deletePage = async (req, res) => {
+        try {
+            const { page_id } = req.params;
+            const page = await pageModel.findOne({ page_id: Number(page_id) });
+            if (!page) {
+                return res.status(404).json({ success: false, message: "Page not found" });
+            }
+            await page.deleteOne();
+            res.status(200).json({ success: true, message: "Page deleted" });
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ success: false, message: "Error deleting page" });
+        }
+    }
+
+    deleteComment = async (req, res) => {
+        try {
+            const { comment_id } = req.params;
+            const comment = await commentModel.findOne({ comment_id: Number(comment_id) });
+            if (!comment) {
+                return res.status(404).json({ success: false, message: "Comment not found" });
+            }
+            await comment.deleteOne();
+            res.status(200).json({ success: true, message: "Comment deleted" });
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ success: false, message: "Error deleting comment" });
+        }
+    }
+
+    likePage = async (req, res) => {
+        try {
+            const { page_id } = req.params;
+            const page = await pageModel.findOne({ page_id: Number(page_id) });
+            if (!page) {
+                return res.status(404).json({ success: false, message: "Page not found" });
+            }
+            page.likes += 1;
+            await page.save();
+            res.status(200).json({ success: true, message: "Page liked", page });
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ success: false, message: "Error liking page" });
+        }
+    }
+
+    dislikePage = async (req, res) => {
+        try {
+            const { page_id } = req.params;
+            const page = await pageModel.findOne({ page_id: Number(page_id) });
+            if (!page) {
+                return res.status(404).json({ success: false, message: "Page not found" });
+            }
+            page.dislikes += 1;
+            await page.save();
+            res.status(200).json({ success: true, message: "Page disliked", page });
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ success: false, message: "Error disliking page" });
+        }
+    }
+
+    likeComment = async (req, res) => {
+        try {
+            const { comment_id } = req.params;
+            const comment = await commentModel.findOne({ comment_id: Number(comment_id) });
+            if (!comment) {
+                return res.status(404).json({ success: false, message: "Comment not found" });
+            }
+            comment.likes += 1;
+            await comment.save();
+            res.status(200).json({ success: true, message: "Comment liked", comment });
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ success: false, message: "Error liking comment" });
+        }
+    }
+
+    dislikeComment = async (req, res) => {
+        try {
+            const { comment_id } = req.params;
+            const comment = await commentModel.findOne({ comment_id: Number(comment_id) });
+            if (!comment) {
+                return res.status(404).json({ success: false, message: "Comment not found" });
+            }
+            comment.dislikes += 1;
+            await comment.save();
+            res.status(200).json({ success: true, message: "Comment disliked", comment });
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ success: false, message: "Error disliking comment" });
+        }
+    }
+
+    getAuthorPages = async (req, res) => {
+        try {
+            const { authorName } = req.params;
+            const pages = await pageModel.find({ authorName });
+            res.status(200).json({ success: true, pages });
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ success: false, message: "Error fetching pages" });
+        }
+    }
+
 }

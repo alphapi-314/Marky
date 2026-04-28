@@ -14,4 +14,8 @@ userRouter.post('/unsave-page', authorize, userController.unsavePage);
 userRouter.get('/saved-pages', authorize, userController.getSavedPages);
 userRouter.get('/owned-pages', authorize, userController.getOwnedPages);
 
+userRouter.get('/profile/:page_id', userController.getProfile);
+userRouter.put('/profile/:page_id', authorize, userController.updateProfile);
+userRouter.get('/author-profile/:authorName', userController.getAuthorProfile);
+
 export default userRouter;

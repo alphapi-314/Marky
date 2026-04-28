@@ -61,6 +61,7 @@ export class CompilerController {
                 authorName: resolvedAuthorName,
                 title,
                 contentID,
+                location: req.body.location || 'Unknown',
                 embeddings: []
             });
             await newPage.save();

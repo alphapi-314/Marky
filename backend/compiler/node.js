@@ -1,33 +1,32 @@
 'use strict';
-
 class Node {
-    constructor(nodeType, sourcepos = null) {
-        this.type = nodeType;
+    constructor(node_type, sourcepos = null) {
+        this.type = node_type;
         this.parent = null;
-        this.firstChild = null;
-        this.lastChild = null;
+        this.first_child = null;
+        this.last_child = null;
         this.prev = null;
         this.next = null;
         this.sourcepos = sourcepos;
-        this.stringContent = '';
+        this.string_content = "";
         this.literal = null;
         this.destination = null;
         this.title = null;
         this.info = null;
         this.level = null;
-        this.isOpen = true;
+        this.is_open = true;
     }
 
-    appendChild(child) {
+    append_child(child) {
         child.unlink();
         child.parent = this;
-        if (this.lastChild) {
-            this.lastChild.next = child;
-            child.prev = this.lastChild;
-            this.lastChild = child;
+        if (this.last_child) {
+            this.last_child.next = child;
+            child.prev = this.last_child;
+            this.last_child = child;
         } else {
-            this.firstChild = child;
-            this.lastChild = child;
+            this.first_child = child;
+            this.last_child = child;
         }
     }
 
@@ -35,13 +34,13 @@ class Node {
         if (this.prev) {
             this.prev.next = this.next;
         } else if (this.parent) {
-            this.parent.firstChild = this.next;
+            this.parent.first_child = this.next;
         }
 
         if (this.next) {
             this.next.prev = this.prev;
         } else if (this.parent) {
-            this.parent.lastChild = this.prev;
+            this.parent.last_child = this.prev;
         }
 
         this.parent = null;
@@ -49,7 +48,7 @@ class Node {
         this.prev = null;
     }
 
-    insertAfter(sibling) {
+    insert_after(sibling) {
         sibling.unlink();
         sibling.next = this.next;
         if (sibling.next) {
@@ -59,7 +58,7 @@ class Node {
         this.next = sibling;
         sibling.parent = this.parent;
         if (!sibling.next && sibling.parent) {
-            sibling.parent.lastChild = sibling;
+            sibling.parent.last_child = sibling;
         }
     }
 
@@ -68,8 +67,8 @@ class Node {
         let entering = true;
         while (current) {
             yield [current, entering];
-            if (entering && current.firstChild) {
-                current = current.firstChild;
+            if (entering && current.first_child) {
+                current = current.first_child;
                 entering = true;
             } else if (current === this) {
                 break;
@@ -83,30 +82,36 @@ class Node {
         }
     }
 
-    toJSON() {
-        const d = { type: this.type };
+    toObject() {
+        let d = { type: this.type };
 
         if (this.literal !== null) d.literal = this.literal;
         if (this.level !== null) d.level = this.level;
         if (this.destination !== null) d.destination = this.destination;
         if (this.info !== null) d.info = this.info;
+        if (this.title !== null) d.title = this.title;
 
-        if (this.customId !== undefined && this.customId !== null) d.custom_id = this.customId;
+        if (this.custom_id !== undefined && this.custom_id !== null) d.custom_id = this.custom_id;
         if (this.label !== undefined && this.label !== null) d.label = this.label;
         if (this.checked !== undefined && this.checked !== null) d.checked = this.checked;
+        if (this.list_type !== undefined && this.list_type !== null) d.list_type = this.list_type;
 
-        if (this.listType !== undefined && this.listType !== null) d.list_type = this.listType;
-        if (this.listStart !== undefined && this.listStart !== null) d.list_start = this.listStart;
-
-        const children = [];
-        let child = this.firstChild;
+        let children = [];
+        let child = this.first_child;
         while (child) {
-            children.push(JSON.parse(child.toJSON()));
+            children.push(child.toObject());
             child = child.next;
         }
-        if (children.length > 0) d.children = children;
 
-        return JSON.stringify(d, null, 2);
+        if (children.length > 0) {
+            d.children = children;
+        }
+
+        return d;
+    }
+
+    toJSON() {
+        return JSON.stringify(this.toObject(), null, 4);
     }
 }
 
