@@ -1,2 +1,0 @@
-# Marky
-Content Management System.
